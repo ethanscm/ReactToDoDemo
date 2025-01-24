@@ -3,57 +3,28 @@ import TodoItem from './TodoItem';
 
 function TodoList() {
   // State for the list of to-dos
-  const [todos, setTodos] = useState([]);
 
   // State for the input field
   const [input, setInput] = useState('');
 
   // Load to-dos from localStorage when the component mounts
-  useEffect(() => {
-    const storedTodos = JSON.parse(localStorage.getItem('todos'));
-    if (storedTodos) {
-      setTodos(storedTodos);
-    }
-  }, []);
 
   // Save to-dos to localStorage whenever they change
-  useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos]);
 
   // Handle input field changes
   const handleInputChange = (e) => {
-    setInput(e.target.value);
   };
 
   // Handle adding a new to-do
   const handleAddTodo = (e) => {
-    e.preventDefault();
-    const trimmedInput = input.trim();
-    if (trimmedInput === '') return;
-    const newTodo = {
-      id: Date.now(),
-      text: trimmedInput,
-      completed: false,
-    };
-    setTodos([...todos, newTodo]);
-    setInput('');
   };
 
   // Handle deleting a to-do
   const handleDelete = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   // Handle toggling the completion status of a to-do
   const toggleCompletion = (id) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id
-          ? { ...todo, completed: !todo.completed }
-          : todo
-      )
-    );
   };
 
   return (
@@ -61,8 +32,6 @@ function TodoList() {
       <form onSubmit={handleAddTodo} className="todo-form">
         <input
           type="text"
-          value={input}
-          onChange={handleInputChange}
           placeholder="Add a new task"
           className="todo-input"
         />
@@ -70,20 +39,7 @@ function TodoList() {
           Add
         </button>
       </form>
-      {todos.length > 0 ? (
-        <ul className="todo-list">
-          {todos.map((todo) => (
-            <TodoItem
-              key={todo.id}
-              todo={todo}
-              onDelete={handleDelete}
-              onToggle={toggleCompletion}
-            />
-          ))}
-        </ul>
-      ) : (
-        <p className="no-tasks">No tasks! Add a task to get started.</p>
-      )}
+      <p>CONDITIONALLY RENDER TODO LIST ITEMS HERE</p>
     </div>
   );
 }
