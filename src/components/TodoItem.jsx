@@ -4,10 +4,10 @@ function TodoItem({ todo, onDelete, onToggle }) {
   return (
     <li className="todo-item">
       <span
-        className={`todo-text ${todo.completed ? 'completed' : ''}`}
+        className={`todo-text ${todo.isComplete ? 'completed' : ''}`}
         onClick={() => onToggle(todo.id)}
       >
-        {todo.text}
+        {todo.description}
       </span>
       <button
         onClick={() => onDelete(todo.id)}
