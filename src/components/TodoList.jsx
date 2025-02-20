@@ -3,7 +3,9 @@ import TodoItem from './TodoItem';
 import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(/*INSERT SUPABASE LINK HERE*/, /*INSERT KEY HERE*/);
-// Key can be found at
+// Read https://supabase.com/docs/reference/javascript/initializing on how to call createClient.
+// This is also not a safe way to interact with supabase. But I will do more research on how
+// to do that.
 
 function TodoList() {
   // State for the list of to-dos
